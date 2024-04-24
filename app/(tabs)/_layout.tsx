@@ -6,6 +6,7 @@ import { Pressable } from 'react-native';
 import Colors from '@/constants/Colors';
 import { useColorScheme } from '@/components/useColorScheme';
 import { useClientOnlyValue } from '@/components/useClientOnlyValue';
+import { Text, View } from '@/components/Themed';
 
 // You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
 function TabBarIcon(props: {
@@ -32,18 +33,19 @@ export default function TabLayout() {
           title: 'Tab One',
           tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
           headerRight: () => (
-            <Link href="/modal" asChild>
-              <Pressable>
-                {({ pressed }) => (
-                  <FontAwesome
-                    name="info-circle"
-                    size={25}
-                    color={Colors[colorScheme ?? 'light'].text}
-                    style={{ marginRight: 15, opacity: pressed ? 0.5 : 1 }}
-                  />
-                )}
-              </Pressable>
-            </Link>
+            <View style={{ flexDirection: 'row', gap: 16, paddingHorizontal: 8 }}>
+              <Link href={{ pathname: '/[id]/without-layout/', params: { id: 'testId' } }} asChild>
+                <Pressable>
+                  <Text>Without Layout</Text>
+                </Pressable>
+              </Link>
+              <Link href={{ pathname: '/[id]/with-layout/', params: { id: 'testId' } }} asChild>
+                <Pressable>
+                  <Text>With Layout</Text>
+                </Pressable>
+              </Link>
+            </View>
+
           ),
         }}
       />
